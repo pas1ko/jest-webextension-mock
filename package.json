@@ -40,5 +40,8 @@
         "setupFiles": [
             "./__setups__/chrome.js"
         ]
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
