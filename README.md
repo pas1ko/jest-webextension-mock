@@ -1,18 +1,19 @@
-[![npm](https://img.shields.io/npm/v/jest-webextension-mock.svg)](https://www.npmjs.com/package/jest-webextension-mock) [![npm](https://img.shields.io/npm/l/jest-webextension-mock.svg)](https://github.com/clarkbw/jest-webextension-mock/blob/master/LICENSE) [![Codecov](https://img.shields.io/codecov/c/github/clarkbw/jest-webextension-mock.svg)](https://codecov.io/gh/clarkbw/jest-webextension-mock) [![Greenkeeper badge](https://badges.greenkeeper.io/clarkbw/jest-webextension-mock.svg)](https://greenkeeper.io/) [![Twitter](https://img.shields.io/twitter/url/https/github.com/clarkbw/jest-webextension-mock.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+> Fork of the [this](jest-webextension-mock) module: Removed Firefox; added 'chrome.runtime.id'.
+
+[![npm](https://img.shields.io/npm/v/@serh11p/jest-webextension-mock.svg)](https://www.npmjs.com/package/@serh11p/jest-webextension-mock) [![npm](https://img.shields.io/npm/l/@serh11p/jest-webextension-mock.svg)](https://github.com/serh11p/jest-webextension-mock/blob/master/LICENSE) [![Codecov](https://img.shields.io/codecov/c/github/serh11p/jest-webextension-mock.svg)](https://codecov.io/gh/serh11p/jest-webextension-mock) [![Greenkeeper badge](https://badges.greenkeeper.io/serh11p/jest-webextension-mock.svg)](https://greenkeeper.io/) [![Twitter](https://img.shields.io/twitter/url/https/github.com/serh11p/jest-webextension-mock.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 ## Install
-
 
 For yarn:
 
 ```bash
-yarn add --dev jest-webextension-mock
+yarn add --dev @serh11p/jest-webextension-mock
 ```
 
 For npm:
 
 ```bash
-npm i --save-dev jest-webextension-mock
+npm i --save-dev @serh11p/jest-webextension-mock
 ```
 
 ## Setup
@@ -24,7 +25,7 @@ In your `package.json` under the `jest` section add the `setupFiles` attribute w
 ```json
 "jest": {
   "setupFiles": [
-    "jest-webextension-mock"
+    "@serh11p/jest-webextension-mock"
   ]
 }
 ```
@@ -34,8 +35,9 @@ In your `package.json` under the `jest` section add the `setupFiles` attribute w
 Alternatively you can create a new setup file and require this module.
 
 `__setups__/chrome.js`
+
 ```js
-require('jest-webextension-mock');
+require('@serh11p/jest-webextension-mock');
 ```
 
 And add that file to your `setupFiles`:
@@ -68,7 +70,7 @@ describe('your function to test', () => {
   it('should have called a webextension API', () => {
     yourFunctionToTest();
     expect(chrome.tabs.update).toHaveBeenCalledWith({
-      url: 'https://example.com/'
+      url: 'https://example.com/',
     });
   });
 });

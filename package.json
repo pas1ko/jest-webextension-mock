@@ -1,10 +1,10 @@
 {
-    "name": "jest-webextension-mock",
+    "name": "@serh11p/jest-webextension-mock",
     "version": "3.5.0",
     "description": "Mock the components of a WebExtension",
     "main": "dist/setup.js",
     "module": "src/setup.js",
-    "author": "Bryan Clark <clarkbw@gmail.com> (https://twitter.com/clarkbw)",
+    "author": "Serhii Pashchenko (serh11p.com)",
     "license": "ISC",
     "scripts": {
         "test": "jest",
