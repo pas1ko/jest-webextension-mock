@@ -1,7 +1,5 @@
 > Fork of the [this](jest-webextension-mock) module: Removed Firefox; added 'chrome.runtime.id'.
 
-[![npm](https://img.shields.io/npm/v/@serh11p/jest-webextension-mock.svg)](https://www.npmjs.com/package/@serh11p/jest-webextension-mock) [![npm](https://img.shields.io/npm/l/@serh11p/jest-webextension-mock.svg)](https://github.com/serh11p/jest-webextension-mock/blob/master/LICENSE) [![Codecov](https://img.shields.io/codecov/c/github/serh11p/jest-webextension-mock.svg)](https://codecov.io/gh/serh11p/jest-webextension-mock) [![Greenkeeper badge](https://badges.greenkeeper.io/serh11p/jest-webextension-mock.svg)](https://greenkeeper.io/) [![Twitter](https://img.shields.io/twitter/url/https/github.com/serh11p/jest-webextension-mock.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
-
 ## Install
 
 For yarn:
