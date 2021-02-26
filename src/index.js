@@ -29,4 +29,3 @@ const chrome = {
 };
 
 export { chrome };
-export { chrome as browser }; // Firefox uses 'browser' but aliases it to chrome

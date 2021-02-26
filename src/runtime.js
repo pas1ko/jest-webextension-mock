@@ -1,5 +1,6 @@
 export let onMessageListeners = [];
 export const runtime = {
+  id: 'mocked_id',
   connect: jest.fn(function ({ name }) {
     return {
       name,
