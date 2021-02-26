@@ -19,6 +19,7 @@ var omnibox = {
 
 var onMessageListeners = [];
 var runtime = {
+  id: 'mocked_id',
   connect: jest.fn(function (_ref) {
     var name = _ref.name;
     return {
@@ -78,7 +79,7 @@ var runtime = {
 // https://developer.chrome.com/extensions/tabs
 var tabs = {
   get: jest.fn(function () {
-    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () { };
+    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
     return cb({});
   }),
   getCurrent: jest.fn(function (cb) {
@@ -119,23 +120,23 @@ var tabs = {
   }),
   duplicate: jest.fn(function () {
     var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () { };
+    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
     return cb(Object.assign({}, {
       id: id
     }));
   }),
   query: jest.fn(function () {
-    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () { };
+    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
     return cb([{}]);
   }),
   highlight: jest.fn(function () {
-    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () { };
+    var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
     return cb();
   }),
   update: jest.fn(function () {
     var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
     var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () { };
+    var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
     return cb(Object.assign({}, props, {
       id: id
     }));
@@ -143,7 +144,7 @@ var tabs = {
   move: jest.fn(function () {
     var ids = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () { };
+    var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
     return cb(ids.map(function (id) {
       return Object.assign({}, props, {
         id: id
@@ -481,20 +482,46 @@ var extension = {
   getURL: jest.fn()
 };
 
+var cbOrPromise$1 = function cbOrPromise(cb, value) {
+  if (cb !== undefined) {
+    return cb(value);
+  }
+
+  return Promise.resolve(value);
+};
+
 var downloads = {
-  acceptDanger: jest.fn((downloadId, cb) => cbOrPromise(cb)),
-  cancel: jest.fn((downloadId, cb) => cbOrPromise(cb)),
-  download: jest.fn((options, cb) => cbOrPromise(cb)),
-  erase: jest.fn((query, cb) => cbOrPromise(cb)),
-  getFileIcon: jest.fn((downloadId, cb) => cbOrPromise(cb)),
+  acceptDanger: jest.fn(function (downloadId, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  cancel: jest.fn(function (downloadId, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  download: jest.fn(function (options, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  erase: jest.fn(function (query, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  getFileIcon: jest.fn(function (downloadId, cb) {
+    return cbOrPromise$1(cb);
+  }),
   open: jest.fn(),
-  pause: jest.fn((downloadId, cb) => cbOrPromise(cb)),
-  removeFile: jest.fn((downloadId, cb) => cbOrPromise(cb)),
-  resume: jest.fn((downloadId, cb) => cbOrPromise(cb)),
-  search: jest.fn((query, cb) => cbOrPromise(cb)),
+  pause: jest.fn(function (downloadId, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  removeFile: jest.fn(function (downloadId, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  resume: jest.fn(function (downloadId, cb) {
+    return cbOrPromise$1(cb);
+  }),
+  search: jest.fn(function (query, cb) {
+    return cbOrPromise$1(cb);
+  }),
   setShelfEnabled: jest.fn(),
   show: jest.fn(),
-  showDefaultFolder: jest.fn(),
+  showDefaultFolder: jest.fn()
 };
 
 var geckoProfiler = {
@@ -536,9 +563,8 @@ var chrome = {
   i18n: i18n,
   webNavigation: webNavigation,
   extension: extension,
-  downloads: downloads,
+  downloads: downloads
 };
-// Firefox uses 'browser' but aliases it to chrome
 
 /**
  * This is a setup file we specify as our 'main' entry point
@@ -546,14 +572,3 @@ var chrome = {
  * directly call the module in their `setupFiles` property.
  */
 global.chrome = chrome;
-global.browser = chrome; // Firefox specific globals
-// if (navigator.userAgent.indexOf('Firefox') !== -1) {
-// https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Content_scripts#exportFunction
-
-global.exportFunction = jest.fn(function (func) {
-  return func;
-}); // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Content_scripts#cloneInto
-
-global.cloneInto = jest.fn(function (obj) {
-  return obj;
-}); // }
